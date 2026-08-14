@@ -15,7 +15,7 @@
 import { readFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { createRequire } from 'node:module'
-import { basename, dirname, relative, resolve as resolvePath, sep } from 'node:path'
+import { basename, dirname, join, relative, resolve as resolvePath, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { UserConfig } from 'tsdown'
 import { transform } from 'lightningcss'
@@ -254,6 +254,26 @@ function clientConfig(id: string, entry: string): UserConfig {
           `client bundle purity: "${source}" is not a platform module (CLIENT_EXTERNALS), an inline-safe wire layer, or a generated /remote contribution — `
           + 'cross-plugin value imports are forbidden; collaborate through cordis services (type-only imports are erased and never reach this gate)',
         )
+      },
+    }, {
+      // Browser-targeted client bundles must not inline Node-idiom entry
+      // points: tsdown forces platform 'node' for CJS output (our loader's
+      // factory format), so package "exports" browser conditions are ignored
+      // and e.g. nanoid resolves to its node build which requires
+      // "node:crypto". Walk up from the importer to the nearest
+      // node_modules/nanoid (pnpm's strict layout links deps into the
+      // importer package's own node_modules) and redirect to the browser
+      // variant, which is self-contained (global crypto).
+      name: 'dsh-client-browser-conditions',
+      resolveId(source: string, importer: string | undefined) {
+        if (source !== 'nanoid' || importer === undefined) return null
+        let dir = dirname(importer)
+        while (dir !== dirname(dir)) {
+          const candidate = join(dir, 'node_modules', 'nanoid', 'index.browser.js')
+          if (existsSync(candidate)) return { id: candidate, external: false }
+          dir = dirname(dir)
+        }
+        return null
       },
     }, {
       name: 'dsh-css-modules-inline',

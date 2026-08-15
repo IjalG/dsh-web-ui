@@ -33,7 +33,6 @@
     "@linxin666/dsh-live-stats": "workspace:*",
     "@linxin666/dsh-ssh": "workspace:*",
     "@linxin666/dsh-client-ui-web-ui-settings": "workspace:*",
-    "@linxin666/dsh-beyond-workscope": "workspace:*",
     "@linxin666/dsh-skins": "workspace:*"
   },
   "files": [

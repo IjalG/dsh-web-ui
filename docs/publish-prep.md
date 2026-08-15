@@ -21,7 +21,6 @@
 | packages/dsh-ssh | @linxin666/dsh-ssh | 0.1.1 | true |
 | packages/dsh-aionui-panel | @linxin666/dsh-client-ui-aionui-panel | 0.1.1 | true |
 | packages/dsh-web-ui-settings | @linxin666/dsh-client-ui-web-ui-settings | 0.1.1 | true |
-| packages/dsh-beyond-workscope | @linxin666/dsh-beyond-workscope | 0.1.1 | true |
 | packages/dsh-skins | @linxin666/dsh-skins（聚合） | 0.1.1 | true |
 | packages/dsh-web-ui-all | @linxin666/dsh-web-ui-all（聚合） | 0.1.1 | true |
 | packages/skins/qq98 | @linxin666/dsh-client-ui-skin-qq98 | 0.1.1 | true |

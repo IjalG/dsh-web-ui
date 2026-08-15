@@ -47,11 +47,6 @@
     - id: ssh
       name: '@linxin666/dsh-ssh'
 
-# from ../dsh-beyond-workscope
-- insert:
-    - id: beyond-workscope
-      name: '@linxin666/dsh-beyond-workscope'
-
 # from ../skins/skin-center (via ../dsh-skins)
 - insert:
     - id: ui-skin-center

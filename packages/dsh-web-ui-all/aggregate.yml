@@ -15,7 +15,7 @@ patchFrom:
   - ../dsh-remote-web-ui
   - ../dsh-live-stats
   - ../dsh-ssh
-  - ../dsh-beyond-workscope
+  # dsh-beyond-workscope 已移入 dsh-engineering 家族（完整提供者），此处不再聚合
   - ../dsh-skins
 self:
   - ui-web-ui-compat
@@ -28,5 +28,4 @@ deps:
   - ../dsh-live-stats
   - ../dsh-ssh
   - ../dsh-web-ui-settings
-  - ../dsh-beyond-workscope
   - ../dsh-skins
